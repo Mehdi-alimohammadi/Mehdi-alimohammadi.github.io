@@ -259,8 +259,8 @@
         /* --- Skills Section --- */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: minmax(120px, auto);
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 150px;
             gap: 1.5rem;
         }
 
@@ -283,19 +283,14 @@
         }
 
         .skill-item i {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
         
         .skill-item span {
             font-weight: 600;
         }
-
-        /* Masonry layout for skills */
-        .skill-item.wide { grid-column: span 2; }
-        .skill-item.tall { grid-row: span 2; }
-        .skill-item.large { grid-column: span 2; grid-row: span 2; }
 
         /* --- Publications Section --- */
         .filter-menu {
@@ -372,21 +367,10 @@
         }
 
         .abstract-container {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
-            border-top: 1px solid var(--border-color);
-            margin-top: 1rem;
-            padding-top: 1rem;
-        }
-
-        .abstract-text {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-align: justify;
+            display: none;
         }
         
-        .abstract-toggle-btn {
+        .abstract-open-btn {
             background: none;
             border: 1px solid var(--secondary-color);
             color: var(--secondary-color);
@@ -394,11 +378,11 @@
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
             align-self: flex-start;
         }
 
-        .abstract-toggle-btn:hover {
+        .abstract-open-btn:hover {
             background-color: var(--secondary-color);
             color: var(--bg-color);
         }
@@ -410,7 +394,7 @@
             font-size: 0.8rem;
             font-weight: 600;
             color: #121212;
-            margin-top: auto; /* Pushes status to the bottom */
+            margin-top: auto;
             padding-top: 0.4rem;
         }
         
@@ -419,6 +403,60 @@
         .status-submitted { background-color: #3498db; }
         .status-in-prep { background-color: #95a5a6; }
         .status-finalizing { background-color: #9b59b6; }
+
+        /* --- Modal for Abstracts --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            width: min(600px, 92vw);
+            max-height: 70vh;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            animation: fadeInUp 0.25s ease-out;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-title {
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 1rem 1.2rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            overflow-y: auto;
+            max-height: 60vh;
+            text-align: justify;
+        }
         
         /* --- Footer --- */
         footer {
@@ -457,10 +495,7 @@
             
             .skills-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-            .skill-item.wide, .skill-item.tall, .skill-item.large {
-                grid-column: span 2;
-                grid-row: span 1;
+                grid-auto-rows: 140px;
             }
         }
 
@@ -473,7 +508,16 @@
     <!-- Hero Section -->
     <header class="hero">
         <h1 id="hero-title"></h1>
-        <p class="subtitle">Ph.D. in Control Engineering | Researcher in Swarm Intelligence & Optimization</p>
+<img src="https://avatars.githubusercontent.com/u/173374283?v=4" 
+     alt="Mehdi Alimohammadi" 
+     style="width:150px;
+            height:150px;
+            border-radius:50%;
+            border:2px solid var(--primary-color);
+            margin-bottom:1rem;
+            object-fit:cover;">
+
+        <p class="subtitle">Ph.D. candidate in Control Engineering | Researcher in Swarm Intelligence & Optimization</p>
         <div class="social-links">
             <a href="mailto:alimohammadim@mail.um.ac.ir" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
             <a href="https://scholar.google.com/citations?user=your_scholar_id" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
@@ -489,10 +533,10 @@
     <main>
         <!-- About Section -->
         <section id="about" class="section container">
-            <h2 class="section-title reveal">Profile</h2>
+            <h2 class="section-title reveal">Biography</h2>
             <div class="card reveal">
                 <p>
-                    Mehdi Alimohammadi (email: alimohammadim@mail.um.ac.ir) is currently a Ph.D. candidate in control systems engineering in the Department of Electrical Engineering at Ferdowsi University of Mashhad. He is also a researcher at the Cognitive and Computing Laboratory (CCL). His main interests are in dynamical system modelling and swarm intelligence. His work focuses on creating transparent, state-space based optimization algorithms and solving complex routing and scheduling problems.
+                    Mehdi Alimohammadi is currently a Ph.D. candidate in control systems engineering in the Department of Electrical Engineering at Ferdowsi University of Mashhad. He is also a researcher at the Cognitive and Computing Laboratory (CCL). His work focuses on bridging control system theory and evolutionary optimization and also solving combinatorial problems. His current engagements are implementing a PSO electronic circuit and also a new encoding for optimizing structure-agnostic problems.
                 </p>
             </div>
         </section>
@@ -548,13 +592,14 @@
         <section id="skills" class="section container">
             <h2 class="section-title reveal">Core Competencies</h2>
             <div class="skills-grid">
-                <div class="skill-item reveal wide"><i class="fas fa-brain"></i><span>Swarm Intelligence</span></div>
-                <div class="skill-item reveal"><i class="fas fa-cogs"></i><span>Evolutionary Computation</span></div>
+                <div class="skill-item reveal"><i class="fas fa-dove"></i><span>Swarm & Evolutionary Computation</span></div>
+                <div class="skill-item reveal"><i class="fas fa-code"></i><span>MATLAB & Simulink</span></div>
+                <div class="skill-item reveal"><i class="fab fa-python"></i><span>Python</span></div>
+                <div class="skill-item reveal"><i class="fas fa-network-wired"></i><span>Neural Networks</span></div>
+                <div class="skill-item reveal"><i class="fas fa-brain"></i><span>Fuzzy Logic</span></div>
                 <div class="skill-item reveal"><i class="fas fa-calculator"></i><span>Mathematical Modelling</span></div>
-                <div class="skill-item reveal tall"><i class="fas fa-code"></i><span>MATLAB & Simulink</span></div>
                 <div class="skill-item reveal"><i class="fas fa-route"></i><span>Routing & Scheduling</span></div>
                 <div class="skill-item reveal"><i class="fas fa-chart-line"></i><span>Data-Driven Control</span></div>
-                <div class="skill-item reveal wide"><i class="fab fa-python"></i><span>Python</span></div>
                 <div class="skill-item reveal"><i class="fas fa-solar-panel"></i><span>Renewable Energy</span></div>
             </div>
         </section>
@@ -577,9 +622,9 @@
                         <p class="journal">Swarm and Evolutionary Computation, 2025</p>
                         <a href="https://www.sciencedirect.com/science/article/abs/pii/S2210650225000264" target="_blank" class="paper-link">View Paper <i class="fas fa-external-link-alt"></i></a>
                         <div class="abstract-container">
-                            <p class="abstract-text">A systems theory framework for swarm optimization algorithms promises the rigorous analysis of swarm behaviors and systematic approaches that could avoid ad hoc parameter settings and achieve guaranteed performances. However, optimization processes must treat various systems theory concepts, such as stability and controllability, differently, as swarm optimization relies on preserving diversity rather than reaching uniform agent behavior. This work addresses this duality of perspective and proposes State-Space Particle Swarm Optimization (SS-PSO) using the feedback concept in control systems theory. By exploiting the hidden analogy between these two paradigms, we introduce the concept of controllability for optimization purposes through state-space representation. Extending controllability to particle swarm optimization (PSO) highlights the ability to span the search space, emphasizing the significance of particles' movement rather than their loss of diversity. Furthermore, adaptive exploration (AE) using an iterative bisection algorithm is proposed for the PSO parameters that leverages this controllability measure and its minimum singular value to facilitate explainable swarm behaviors and escape local minima. Theoretical and numerical analyses reveal that SS-PSO is only uncontrollable when the cognitive factor is zero, implying less exploration. Finally, AE enhances exploration by increasing the controllability matrix's minimum singular value. This result underscores the profound connection between the controllability matrix and exploration, a critical insight that significantly enhances our understanding of swarm optimization. AE-based State-Space-PSO (AESS-PSO) shows improved exploration and performance over PSO in 86 SOP and CEC benchmarks, particularly for smaller populations.</p>
+                            <p>A systems theory framework for swarm optimization algorithms promises the rigorous analysis of swarm behaviors and systematic approaches that could avoid ad hoc parameter settings and achieve guaranteed performances. However, optimization processes must treat various systems theory concepts, such as stability and controllability, differently, as swarm optimization relies on preserving diversity rather than reaching uniform agent behavior. This work addresses this duality of perspective and proposes State-Space Particle Swarm Optimization (SS-PSO) using the feedback concept in control systems theory. By exploiting the hidden analogy between these two paradigms, we introduce the concept of controllability for optimization purposes through state-space representation. Extending controllability to particle swarm optimization (PSO) highlights the ability to span the search space, emphasizing the significance of particles' movement rather than their loss of diversity. Furthermore, adaptive exploration (AE) using an iterative bisection algorithm is proposed for the PSO parameters that leverages this controllability measure and its minimum singular value to facilitate explainable swarm behaviors and escape local minima. Theoretical and numerical analyses reveal that SS-PSO is only uncontrollable when the cognitive factor is zero, implying less exploration. Finally, AE enhances exploration by increasing the controllability matrix's minimum singular value. This result underscores the profound connection between the controllability matrix and exploration, a critical insight that significantly enhances our understanding of swarm optimization. AE-based State-Space-PSO (AESS-PSO) shows improved exploration and performance over PSO in 86 SOP and CEC benchmarks, particularly for smaller populations.</p>
                         </div>
-                        <button class="abstract-toggle-btn">Show Abstract</button>
+                        <button class="abstract-open-btn">View Abstract</button>
                     </div>
                     <span class="status status-published">Published</span>
                 </div>
@@ -587,11 +632,11 @@
                     <div>
                         <p class="title">Rank-based Adaptive Brooding in Mimetic Coral Reefs Search</p>
                         <p class="journal">AUT Journal of Modeling and Simulation, 2024</p>
-                        <a href="https://scholar.google.com.sg/citations?view_op=view_citation&hl=en&user=F_f0OIUAAAAJ&citation_for_view=F_f0OIUAAAAJ:u5HHmVD_uO8C" target="_blank" class="paper-link">View Paper <i class="fas fa-external-link-alt"></i></a>
+                        <a href="https://miscj.aut.ac.ir/article_5581.html" target="_blank" class="paper-link">View Paper <i class="fas fa-external-link-alt"></i></a>
                         <div class="abstract-container">
-                           <p class="abstract-text">Mimetic Coral Reefs Optimization (MCRO) has proven highly effective for feature selection due to its capacity to explore diverse solution spaces, enhancing model accuracy and robustness. However, integrating MCRO with local search techniques remains challenging, as it tends to be computationally intensive and prone to premature convergence. To address these issues, this paper introduces a Rank-based Adaptive Brooding (RAB) mechanism, designed to refine the local mimetic search strategy within MCRO. RAB adaptively adjusts the brooding operator based on the ranks of coral larvae, minimizing disruption to high-rank larvae and harnessing the exploratory potential of lower-rank larvae. This approach promotes a more balanced exploration-exploitation trade-off, leading to faster convergence and enhanced performance in complex problem spaces. The proposed method's efficacy is tested across eight UCI datasets using KNN, Decision Tree, and SVM classifiers, and the results are evaluated by precision, recall, and F1 score. Empirical results reveal that RAB outperforms existing adaptive strategies with fixed brooding, delivering superior feature selection performance, particularly in high-dimensional datasets. Additionally, the optimization capabilities of RAB were examined using 39 CEC benchmark functions, revealing consistent improvements in feature selection accuracy while demonstrating variable outcomes in broader optimization tasks. Notably, RAB showed significant enhancements in eight benchmark cases, highlighting its potential for broader applicability in optimization scenarios.</p>
+                           <p>Mimetic Coral Reefs Optimization (MCRO) has proven highly effective for feature selection due to its capacity to explore diverse solution spaces, enhancing model accuracy and robustness. However, integrating MCRO with local search techniques remains challenging, as it tends to be computationally intensive and prone to premature convergence. To address these issues, this paper introduces a Rank-based Adaptive Brooding (RAB) mechanism, designed to refine the local mimetic search strategy within MCRO. RAB adaptively adjusts the brooding operator based on the ranks of coral larvae, minimizing disruption to high-rank larvae and harnessing the exploratory potential of lower-rank larvae. This approach promotes a more balanced exploration-exploitation trade-off, leading to faster convergence and enhanced performance in complex problem spaces. The proposed method's efficacy is tested across eight UCI datasets using KNN, Decision Tree, and SVM classifiers, and the results are evaluated by precision, recall, and F1 score. Empirical results reveal that RAB outperforms existing adaptive strategies with fixed brooding, delivering superior feature selection performance, particularly in high-dimensional datasets. Additionally, the optimization capabilities of RAB were examined using 39 CEC benchmark functions, revealing consistent improvements in feature selection accuracy while demonstrating variable outcomes in broader optimization tasks. Notably, RAB showed significant enhancements in eight benchmark cases, highlighting its potential for broader applicability in optimization scenarios.</p>
                         </div>
-                        <button class="abstract-toggle-btn">Show Abstract</button>
+                        <button class="abstract-open-btn">View Abstract</button>
                     </div>
                     <span class="status status-published">Published</span>
                 </div>
@@ -601,9 +646,9 @@
                         <p class="journal">ICEE 2025 Conference</p>
                         <a href="https://iceeconf.ir/fa/Home/Article/0331f525-7f63-424c-81e6-ed18ae83ad02" target="_blank" class="paper-link">View Paper <i class="fas fa-external-link-alt"></i></a>
                         <div class="abstract-container">
-                            <p class="abstract-text">Conventional wisdom holds that adding constraints to optimization problems, such as Vehicle Routing Problems (VRPs), increases computational complexity and reduces efficiency. This study challenges this assumption. By introducing time window constraints (VRPTW) into VRP models and evaluating them across datasets of varying sizes, results reveal an unexpected outcome: the additional constraints lead to considerable cost reductions—up to 13.3% on average, over 30 independent runs. These results defy traditional expectations, demonstrating that well-crafted constraints can streamline optimization processes and enhance results. This insight into complex logistical systems opens new avenues for leveraging constraints as strategic tools to improve performance in complex logistical systems, redefining their role in optimization theory and practice.</p>
+                            <p>Conventional wisdom holds that adding constraints to optimization problems, such as Vehicle Routing Problems (VRPs), increases computational complexity and reduces efficiency. This study challenges this assumption. By introducing time window constraints (VRPTW) into VRP models and evaluating them across datasets of varying sizes, results reveal an unexpected outcome: the additional constraints lead to considerable cost reductions—up to 13.3% on average, over 30 independent runs. These results defy traditional expectations, demonstrating that well-crafted constraints can streamline optimization processes and enhance results. This insight into complex logistical systems opens new avenues for leveraging constraints as strategic tools to improve performance in complex logistical systems, redefining their role in optimization theory and practice.</p>
                         </div>
-                        <button class="abstract-toggle-btn">Show Abstract</button>
+                        <button class="abstract-open-btn">View Abstract</button>
                     </div>
                     <span class="status status-published">Published</span>
                 </div>
@@ -611,24 +656,45 @@
                 <!-- Submitted Papers -->
                 <div class="card publication-card reveal" data-status="submitted">
                     <div>
-                        <p class="title">A New Model for School Service Vehicle Routing Problem</p>
-                        <p class="journal">Swarm and Evolutionary Computation, Special Issue</p>
+                        <p class="title">Comment: A transformative definition for the Stability</p>
+                        <p class="journal">Nature Machine Intelligence</p>
                     </div>
                     <span class="status status-submitted">Submitted</span>
                 </div>
-                 <div class="card publication-card reveal" data-status="submitted">
+                <div class="card publication-card reveal" data-status="submitted">
                     <div>
-                        <p class="title">A Novel Encoding for Solving Vehicle Routing Problem</p>
-                        <p class="journal">Nature Computational Sciences</p>
+                        <p class="title">Optimizing Magnetic Sensory Configuration for Gesture Recognition in Bionic Hands</p>
+                        <p class="journal">Conference Paper</p>
+                    </div>
+                    <span class="status status-submitted">Submitted</span>
+                </div>
+                <div class="card publication-card reveal" data-status="submitted">
+                    <div>
+                        <p class="title">Metaheuristic Approaches for Client Selection in Federated Learning: A Mini-Survey</p>
+                        <p class="journal">Conference Paper</p>
+                    </div>
+                    <span class="status status-submitted">Submitted</span>
+                </div>
+                <div class="card publication-card reveal" data-status="submitted">
+                    <div>
+                        <p class="title">Generative AI-Enhanced Research: Ethical, Practical, and Transformative Approaches</p>
+                        <p class="journal">Book Chapter Proposal — Submitted</p>
                     </div>
                     <span class="status status-submitted">Submitted</span>
                 </div>
 
                 <!-- Revising Papers -->
-                 <div class="card publication-card reveal" data-status="revising">
+                <div class="card publication-card reveal" data-status="revising">
+                    <div>
+                        <p class="title">A New Model for School Service Vehicle Routing Problem</p>
+                        <p class="journal">TBD</p>
+                    </div>
+                    <span class="status status-revising">Revising</span>
+                </div>
+                <div class="card publication-card reveal" data-status="revising">
                     <div>
                         <p class="title">Swarmorphic Computing: Transparent Analog Circuit Realizable PSO</p>
-                        <p class="journal">In Revision</p>
+                        <p class="journal"></p>
                     </div>
                     <span class="status status-revising">Revising</span>
                 </div>
@@ -636,10 +702,9 @@
                 <!-- In Preparation Papers -->
                 <div class="card publication-card reveal" data-status="in-prep">
                     <div>
-                        <p class="title">Comment: A transformative definition for the Stability</p>
-                        <p class="journal">Finalizing for submission to Nature Machine Intelligence</p>
+                        <p class="title">A Novel Encoding for Solving Vehicle Routing Problem</p>
                     </div>
-                    <span class="status status-finalizing">Finalizing</span>
+                    <span class="status status-in-prep">In Preparation</span>
                 </div>
                 <div class="card publication-card reveal" data-status="in-prep">
                     <div>
@@ -647,9 +712,46 @@
                     </div>
                     <span class="status status-in-prep">In Preparation</span>
                 </div>
-                 <div class="card publication-card reveal" data-status="in-prep">
+                <div class="card publication-card reveal" data-status="in-prep">
                     <div>
                         <p class="title">New Benchmark Function Generator</p>
+                    </div>
+                    <span class="status status-in-prep">In Preparation</span>
+                </div>
+                <div class="card publication-card reveal" data-status="in-prep">
+                    <div>
+                        <p class="title">Ternary Conditional Expression Analog Circuit</p>
+                        <p class="journal">Patent</p>
+                    </div>
+                    <span class="status status-finalizing">Finalizing</span>
+                </div>
+                <div class="card publication-card reveal" data-status="in-prep">
+                    <div>
+                        <p class="title">AESSMOPSO: Multiagent AESSPSO for dynamic</p>
+                    </div>
+                    <span class="status status-in-prep">In Preparation</span>
+                </div>
+                <div class="card publication-card reveal" data-status="in-prep">
+                    <div>
+                        <p class="title">XAI review in microgrids</p>
+                    </div>
+                    <span class="status status-finalizing">Finalizing</span>
+                </div>
+                <div class="card publication-card reveal" data-status="in-prep">
+                    <div>
+                        <p class="title">Windfarm layout optimization</p>
+                    </div>
+                    <span class="status status-finalizing">Finalizing</span>
+                </div>
+                <div class="card publication-card reveal" data-status="in-prep">
+                    <div>
+                        <p class="title">A questionnaire based guideline for writing academic paper</p>
+                    </div>
+                    <span class="status status-finalizing">Finalizing</span>
+                </div>
+                <div class="card publication-card reveal" data-status="in-prep">
+                    <div>
+                        <p class="title">Patient Allocation in Hospital</p>
                     </div>
                     <span class="status status-in-prep">In Preparation</span>
                 </div>
@@ -659,98 +761,13 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Mehdi Alimohammadi. Designed with passion.</p>
+        <p>&copy; 2025 Mehdi Alimohammadi.</p>
     </footer>
 
-    <!-- Particle.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <script>
-        // --- Particle.js Configuration ---
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#ffffff" },
-                "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
-                "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } },
-                "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } },
-                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
-                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } }
-            },
-            "retina_detect": true
-        });
-
-        // --- Typing Effect ---
-        const heroTitle = document.getElementById('hero-title');
-        const text = "Mehdi Alimohammadi";
-        let index = 0;
-
-        function type() {
-            if (index < text.length) {
-                heroTitle.innerHTML = text.substring(0, index + 1) + '<span class="typing-cursor"></span>';
-                index++;
-                setTimeout(type, 120);
-            } else {
-                 heroTitle.innerHTML = text + '<span class="typing-cursor"></span>';
-            }
-        }
-        document.addEventListener('DOMContentLoaded', type);
-
-        // --- Scroll Reveal Animation ---
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                } else {
-                    reveals[i].classList.remove("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal(); // Initial check
-
-        // --- Publication Filter ---
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const publicationCards = document.querySelectorAll('.publication-card');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                const filter = button.dataset.filter;
-                publicationCards.forEach(card => {
-                    if (filter === 'all' || card.dataset.status === filter) {
-                        card.classList.remove('hide');
-                    } else {
-                        card.classList.add('hide');
-                    }
-                });
-            });
-        });
-
-        // --- Abstract Toggle ---
-        const abstractToggleButtons = document.querySelectorAll('.abstract-toggle-btn');
-        abstractToggleButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const abstractContainer = button.previousElementSibling;
-                if (abstractContainer.style.maxHeight) {
-                    abstractContainer.style.maxHeight = null;
-                    button.textContent = 'Show Abstract';
-                } else {
-                    abstractContainer.style.maxHeight = abstractContainer.scrollHeight + "px";
-                    button.textContent = 'Hide Abstract';
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+    <!-- Modal -->
+    <div class="modal-overlay" id="abstract-modal-overlay" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="abstract-modal-title">
+            <div class="modal-header">
+                <div class="modal-title" id="abstract-modal-title">Abstract</div>
+                <button class="modal-close" id="abstract-modal-close" aria-label="Close">
+                    
