@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehdi Alimohammadi | Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --primary-color: #00aaff;
+            --secondary-color: #03dac6;
+            --text-color: #e0e0e0;
+            --text-muted: #888;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* --- Particle Background --- */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- Header / Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            animation: fadeInUp 1s ease-out 0.5s;
+            animation-fill-mode: backwards;
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.5rem;
+            background-color: var(--secondary-color);
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease-out 1s;
+            animation-fill-mode: backwards;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.8rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            font-size: 1rem;
+            color: var(--text-muted);
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-down i {
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        /* --- Card Styling --- */
+        .card {
+            background-color: var(--surface-color);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0, 170, 255, 0.2);
+        }
+
+        /* --- About Section --- */
+        #about .card {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* --- Timeline (Education & Experience) --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--border-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .timeline-container.left { left: 0; }
+        .timeline-container.right { left: 50%; }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--bg-color);
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-container.right::after { left: -10px; }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--surface-color);
+            position: relative;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .timeline-content h4 {
+            color: var(--text-color);
+            font-weight: 400;
+        }
+        
+        .timeline-content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .date {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(120px, auto);
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            background-color: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .skill-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .skill-item span {
+            font-weight: 600;
+        }
+
+        /* Masonry layout for skills */
+        .skill-item.wide { grid-column: span 2; }
+        .skill-item.tall { grid-row: span 2; }
+        .skill-item.large { grid-column: span 2; grid-row: span 2; }
+
+        /* --- Publications Section --- */
+        .filter-menu {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            border-color: var(--primary-color);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-color);
+            border-color: var(--primary-color);
+        }
+
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .publication-card {
+            display: flex;
+            flex-direction: column;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        
+        .publication-card.hide {
+            opacity: 0;
+            transform: scale(0.9);
+            display: none;
+        }
+
+        .publication-card .title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .publication-card .journal {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .publication-card .paper-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .publication-card .paper-link:hover {
+            text-decoration: underline;
+        }
+
+        .abstract-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            border-top: 1px solid var(--border-color);
+            margin-top: 1rem;
+            padding-top: 1rem;
+        }
+
+        .abstract-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+        
+        .abstract-toggle-btn {
+            background: none;
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            align-self: flex-start;
+        }
+
+        .abstract-toggle-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--bg-color);
+        }
+
+        .publication-card .status {
+            align-self: flex-start;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #121212;
+            margin-top: auto; /* Pushes status to the bottom */
+            padding-top: 0.4rem;
+        }
+        
+        .status-published { background-color: #2ecc71; }
+        .status-revising { background-color: #f1c40f; }
+        .status-submitted { background-color: #3498db; }
+        .status-in-prep { background-color: #95a5a6; }
+        .status-finalizing { background-color: #9b59b6; }
+        
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-muted);
+        }
+        
+        /* --- Animations & Responsive Design --- */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-15px); } 60% { transform: translateY(-10px); } }
+
+        .reveal {
+            position: relative;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: 1s all ease;
+        }
+
+        .reveal.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero .subtitle { font-size: 1.2rem; }
+            .section { padding: 4rem 0; }
+            .section-title { font-size: 2rem; margin-bottom: 3rem; }
+
+            .timeline::after { left: 20px; }
+            .timeline-container { width: 100%; padding-left: 60px; padding-right: 15px; }
+            .timeline-container.left, .timeline-container.right { left: 0%; }
+            .timeline-container::after { left: 10px; }
+            
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .skill-item.wide, .skill-item.tall, .skill-item.large {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1 id="hero-title"></h1>
+        <p class="subtitle">Ph.D. candidate in Control Engineering | Researcher in Swarm Intelligence & Optimization</p>
+        <div class="social-links">
+            <a href="mailto:alimohammadim@mail.um.ac.ir" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://scholar.google.com/citations?user=your_scholar_id" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+            <a href="https://www.linkedin.com/in/mehdi-alimohammadi-933848199/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Mehdi-alimohammadi" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+        <a href="#about" class="scroll-down">
+            Explore
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </header>
+
+    <main>
+        <!-- About Section -->
+        <section id="about" class="section container">
+            <h2 class="section-title reveal">Profile</h2>
+            <div class="card reveal">
+                <p>
+                    Mehdi Alimohammadi (email: alimohammadim@mail.um.ac.ir) is currently a Ph.D. candidate in control systems engineering in the Department of Electrical Engineering at Ferdowsi University of Mashhad. He is also a researcher at the Cognitive and Computing Laboratory (CCL). His work focuses on bridging control system theory and evolutionary optimization and also solving combinatorial problems. His current engagements are implementing a PSO electronic circuit and also a new encoding for optimizing structure-agnostic problems.
+                </p>
+            </div>
+        </section>
+
+        <!-- Education & Experience Section -->
+        <section id="journey" class="section container">
+            <h2 class="section-title reveal">My Journey</h2>
+            <div class="timeline">
+                <div class="timeline-container right reveal">
+                    <div class="timeline-content">
+                        <span class="date">2023 - Present</span>
+                        <h3>Research Assistant</h3>
+                        <h4>Cognitive Computing Laboratory (CCL), FUM</h4>
+                        <p>Coordinating computer access and advising students on research projects.</p>
+                    </div>
+                </div>
+                <div class="timeline-container left reveal">
+                    <div class="timeline-content">
+                        <span class="date">2020 - Present</span>
+                        <h3>Ph.D. in Electrical Engineering - Control</h3>
+                        <h4>Ferdowsi University of Mashhad</h4>
+                        <p>Dissertation: "Transparent State-Space based Particle Swarm Optimization." GPA: 3.83/4.0</p>
+                    </div>
+                </div>
+                <div class="timeline-container right reveal">
+                    <div class="timeline-content">
+                        <span class="date">2014 - 2024</span>
+                        <h3>Teaching Assistant</h3>
+                        <h4>FUM, KNTU, & Ilam University</h4>
+                        <p>Courses including Linear Algebra, Soft Computing, PLC Lab, Electrical Circuits, and more.</p>
+                    </div>
+                </div>
+                <div class="timeline-container left reveal">
+                    <div class="timeline-content">
+                        <span class="date">2017 - 2019</span>
+                        <h3>M.Sc. in Electrical Engineering - Control</h3>
+                        <h4>K. N. Toosi University of Technology</h4>
+                        <p>Thesis: "Modeling, Identification, and Control of the Epidemic Influenza Disease." GPA: 3.27/4.0</p>
+                    </div>
+                </div>
+                <div class="timeline-container right reveal">
+                    <div class="timeline-content">
+                        <span class="date">2012 - 2016</span>
+                        <h3>B.S. in Electrical Engineering - Power</h3>
+                        <h4>Ilam University</h4>
+                        <p>Projects on PV Solar Cell Modeling and Syringe Pump design. GPA: 3.6/4.0</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section container">
+            <h2 class="section-title reveal">Core Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-item reveal wide"><i class="fas fa-brain"></i><span>Swarm Intelligence</span></div>
+                <div class="skill-item reveal"><i class="fas fa-cogs"></i><span>Evolutionary Computation</span></div>
+                <div class="skill-item reveal"><i class="fas fa-calculator"></i><span>Mathematical Modelling</span></div>
+                <div class="skill-item reveal tall"><i class="fas fa-code"></i><span>MATLAB & Simulink</span></div>
+                <div class="skill-item reveal"><i class="fas fa-route"></i><span>Routing & Scheduling</span></div>
+                <div class="skill-item reveal"><i class="fas fa-chart-line"></i><span>Data-Driven Control</span></div>
+                <div class="skill-item reveal wide"><i class="fas fa-solar-panel"></i><span>Renewable Energy</span></div>
+                <div class="skill-item reveal tall"><i class="fab fa-python"></i><span>Python</span></div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="section container">
+            <h2 class="section-title reveal">Publications</h2>
+            <div class="filter-menu reveal">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="published">Published</button>
+                <button class="filter-btn" data-filter="submitted">Submitted</button>
+                <button class="filter-btn" data-filter="revising">Revising</button>
+                <button class="filter-btn" data-filter="in-prep">In Preparation</button>
+            </div>
+            <div class="publications-grid">
+                <!-- Published Papers -->
+                <div class="card publication-card reveal" data-status="published">
+                    <div>
+                        <p class="title">State-Space Adaptive Exploration for Explainable Particle Swarm Optimization</p>
+                        <p class="journal">Swarm and Evolutionary Computation, 2025</p>
+                        <a href="https://www.sciencedirect.com/science/article/abs/pii/S2210650225000264" target="_blank" class="paper-link">View Paper <i class="fas fa-external-link-alt"></i></a>
+                        <div class="abstract-container">
+                            <p class="abstract-text">A systems theory framework for swarm optimization algorithms promises the rigorous analysis of swarm behaviors and systematic approaches that could avoid ad hoc parameter settings and achieve guaranteed performances. However, optimization processes must treat various systems theory concepts, such as stability and controllability, differently, as swarm optimization relies on preserving diversity rather than reaching uniform agent behavior. This work addresses this duality of perspective and proposes State-Space Particle Swarm Optimization (SS-PSO) using the feedback concept in control systems theory. By exploiting the hidden analogy between these two paradigms, we introduce the concept of controllability for optimization purposes through state-space representation. Extending controllability to particle swarm optimization (PSO) highlights the ability to span the search space, emphasizing the significance of particles' movement rather than their loss of diversity. Furthermore, adaptive exploration (AE) using an iterative bisection algorithm is proposed for the PSO parameters that leverages this controllability measure and its minimum singular value to facilitate explainable swarm behaviors and escape local minima. Theoretical and numerical analyses reveal that SS-PSO is only uncontrollable when the cognitive factor is zero, implying less exploration. Finally, AE enhances exploration by increasing the controllability matrix's minimum singular value. This result underscores the profound connection between the controllability matrix and exploration, a critical insight that significantly enhances our understanding of swarm optimization. AE-based State-Space-PSO (AESS-PSO) shows improved exploration and performance over PSO in 86 SOP and CEC benchmarks, particularly for smaller populations.</p>
+                        </div>
+                        <button class="abstract-toggle-btn">Show Abstract</button>
+                    </div>
+                    <span class="status status-published">Published</span>
+                </div>
+                <div class="card publication-card reveal" data-status="published">
+                    <div>
+                        <p class="title">Rank-based Adaptive Brooding in Mimetic Coral Reefs Search</p>
+                        <p class="journal">AUT Journal of Modeling and Simulation, 2024</p>
+                        <a href="https://miscj.aut.ac.ir/article_5581.html" target="_blank" class="paper-link">View Paper <i class="fas fa-external-link-alt"></i></a>
+                        <div class="abstract-container">
+                           <p class="abstract-text">Mimetic Coral Reefs Optimization (MCRO) has proven highly effective for feature selection due to its capacity to explore diverse solution spaces, enhancing model accuracy and robustness. However, integrating MCRO with local search techniques remains challenging, as it tends to be computationally intensive and prone to premature convergence. To address these issues, this paper introduces a Rank-based Adaptive 
