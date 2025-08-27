@@ -788,14 +788,25 @@
             console.error('Error fetching IP data:', error);
         });
 });
-
 function saveData(data) {
-    // This function will send the data to our serverless function
-    // See the next step for implementation
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby150qOGMVzxaFUy5cFWsZb5ExFBdQInzQgtqy0TVJg-iFXJrnMonzXuiwmkQTKxx-H8g/exec'; // <-- URL خودتان را اینجا قرار دهید
+
+    fetch(WEB_APP_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Important
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(() => console.log("Data saved successfully."))
+    .catch(error => console.error('Error saving data:', error));
 }
     </script>
 </body>
 </html>
+
 
 
 
