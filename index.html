@@ -770,9 +770,33 @@
             handleScroll();
             initParticles(currentTheme());
         });
+        document.addEventListener("DOMContentLoaded", function() {
+    // Fetch user's IP and location info
+    fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+            const visitData = {
+                ip: data.ip,
+                country: data.country_name,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Now, send this data to be saved
+            saveData(visitData);
+        })
+        .catch(error => {
+            console.error('Error fetching IP data:', error);
+        });
+});
+
+function saveData(data) {
+    // This function will send the data to our serverless function
+    // See the next step for implementation
+}
     </script>
 </body>
 </html>
+
 
 
 
