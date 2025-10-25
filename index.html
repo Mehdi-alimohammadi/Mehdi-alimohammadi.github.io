@@ -405,8 +405,8 @@
             <div class="filter-menu reveal" role="tablist" aria-label="Publication filters">
                 <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
                 <button class="filter-btn" data-filter="published" role="tab" aria-selected="false">Published</button>
-                <button class="filter-btn" data-filter="submitted" role="tab" aria-selected="false">Submitted</button>
                 <button class="filter-btn" data-filter="revising" role="tab" aria-selected="false">Revising</button>
+                <button class="filter-btn" data-filter="submitted" role="tab" aria-selected="false">Submitted</button>
                 <button class="filter-btn" data-filter="in-prep" role="tab" aria-selected="false">In Preparation</button>
             </div>
 
@@ -450,8 +450,25 @@
                     </div>
                     <span class="status status-published">Published</span>
                 </div>
+                
+                <!-- Revising -->
+               
+                <div class="card publication-card reveal" data-status="revising">
+                    <div>
+                        <p class="title">Swarmorphic Computing: Transparent Analog Circuit Realizable PSO</p>
+                        <p class="journal"></p>
+                    </div>
+                    <span class="status status-revising">Revising</span>
+                </div>
 
-                <!-- Submitted -->
+                <div class="card publication-card reveal" data-status="revising">
+                    <div>
+                        <p class="title">A New Model for School Service Vehicle Routing Problem</p>
+                        <p class="journal">TBD</p>
+                    </div>
+                    <span class="status status-revising">Revising</span>
+                </div>
+
                 <div class="card publication-card reveal" data-status="submitted">
                     <div>
                         <p class="title">Comment: A transformative definition for the Stability</p>
@@ -459,8 +476,9 @@
                     </div>
                     <span class="status status-revising">Revising</span>
                 </div>
-
-                               <div class="card publication-card reveal" data-status="submitted">
+                
+                <!-- Submitted -->
+                <div class="card publication-card reveal" data-status="submitted">
                     <div>
                         <p class="title">Generative AI-Enhanced Research: Ethical, Practical, and Transformative Approaches</p>
                         <p class="journal">Book Chapter Proposal</p>
@@ -480,25 +498,6 @@
                     <div>
                         <p class="title">Metaheuristic Approaches for Client Selection in Federated Learning: A Mini-Survey</p>
                         <p class="journal">Journal Paper</p>
-                    </div>
-                    <span class="status status-revising">Revising</span>
-                </div>
-
-
-
-                <!-- Revising -->
-                <div class="card publication-card reveal" data-status="revising">
-                    <div>
-                        <p class="title">Swarmorphic Computing: Transparent Analog Circuit Realizable PSO</p>
-                        <p class="journal"></p>
-                    </div>
-                    <span class="status status-revising">Revising</span>
-                </div>
-
-                <div class="card publication-card reveal" data-status="revising">
-                    <div>
-                        <p class="title">A New Model for School Service Vehicle Routing Problem</p>
-                        <p class="journal">TBD</p>
                     </div>
                     <span class="status status-revising">Revising</span>
                 </div>
@@ -531,9 +530,7 @@
                         <p class="title">A questionnaire based guideline for writing academic paper</p>
                     </div>
                     <span class="status status-finalizing">Finalizing</span>
-                </div>
-
-                
+                </div>             
 
                 <div class="card publication-card reveal" data-status="in-prep">
                     <div>
@@ -791,6 +788,7 @@
     </script>
 </body>
 </html>
+
 
 
 
