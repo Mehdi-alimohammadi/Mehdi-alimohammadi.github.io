@@ -470,10 +470,10 @@
                 
                 <div class="card publication-card reveal" data-status="submitted">
                     <div>
-                        <p class="title">Optimizing Magnetic Sensory Configuration for Gesture Recognition in Bionic Hands</p>
-                        <p class="journal">Conference Paper</p>
+                        <p class="title">OptimiOptimizing Magnetic Sensory Configuration for Gesture Recognition in Bionic Hands</p>
+                        <p class="journal">ICCKE2025 Conference</p>
                     </div>
-                    <span class="status status-submitted">Submitted</span>
+                    <span class="status status-submitted">Published</span>
                 </div>
 
                 <div class="card publication-card reveal" data-status="submitted">
@@ -788,24 +788,10 @@
             console.error('Error fetching IP data:', error);
         });
 });
-function saveData(data) {
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby150qOGMVzxaFUy5cFWsZb5ExFBdQInzQgtqy0TVJg-iFXJrnMonzXuiwmkQTKxx-H8g/exec'; // <-- URL خودتان را اینجا قرار دهید
-
-    fetch(WEB_APP_URL, {
-        method: 'POST',
-        mode: 'no-cors', // Important
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(() => console.log("Data saved successfully."))
-    .catch(error => console.error('Error saving data:', error));
-}
     </script>
 </body>
 </html>
+
 
 
 
