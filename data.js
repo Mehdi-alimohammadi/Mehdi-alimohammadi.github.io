@@ -24,7 +24,7 @@ const publications = [
     {
         status: 'published',
         title: 'Optimizing Magnetic Sensory Configuration for Gesture Recognition in Bionic Hands',
-        journal: 'ICCKE 2025 Conference'
+        journal: 'ICCKE 2025 Conference',
         abstract: 'Achieving accurate and reliable performance in bionic hands is crucial for implanted magnets, which are used for tracking the muscle movements of amputee patients. Increasing the number of magnets is the first trivial action. However, there are two main challenges: (I) implementing many magnetic sensors is hard in surgeries for both the amputee and the doctor, and (II) increasing the number of magnets increases their interference, resulting in reduced performance. To find fewer needed magnetic sensors, this study suggests using Binary Particle Swarm Optimization (BPSO) for feature selection. In particular, we propose an error margin added to the cost function, which acts as a hyperparameter to select the best sensors. Compared to using a total set of 16 sensors, using only 8 sensors achieves an accuracy of 96.98% in predicting three hand gestures—wrist, fist, and thumb—in the second day actual experiment. This accuracy can easily increase if the data is obtained only from the 8 sensors in the identified locations because of the elimination of interference from other sensors, which the current dataset includes. These findings validate the proposed sensor configuration’s robustness and effectiveness in accurately distinguishing between hand gestures. This result also holds the potential for future experiments, implanting only 8 sensors to remove the interference from 16 sensors.'
     },
     {
@@ -87,4 +87,5 @@ const publications = [
         title: 'Patient Allocation in Hospital'
     }
 ];
+
 
